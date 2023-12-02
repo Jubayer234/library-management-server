@@ -24,7 +24,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
+    // await client.connect();
 
     const bookCollection = client.db('libraryManagement').collection('Books');
 
@@ -32,6 +32,10 @@ async function run() {
         const cursor = bookCollection.find();
         const result = await cursor.toArray();
         res.send(result);
+    })
+
+    app.post('addedBooks', async(req,res) => {
+      const newBooks = req.body;
     })
 
     // Send a ping to confirm a successful connection
